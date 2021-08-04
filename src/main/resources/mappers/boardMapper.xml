@@ -4,5 +4,56 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.nugabox.web.board.boardMapper">
+    <select id="getBoardList" resultType="com.nugabox.web.board.model.BoardVO">
+        SELECT
+            BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+        FROM
+            tbl_board
+    </select>
 
+    <select id="getBoardContent" resultType="com.nugabox.web.board.model.BoardVO" parameterType="com.nugabox.web.board.model.BoardVO">
+        SELECT
+            BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+        FROM
+            tbl_board
+        WHERE
+            BID = #{bid}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.nugabox.web.board.model.BoardVO">
+        INSERT INTO tbl_board (CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
+        VALUES (
+                   #{cate_cd}
+               , #{title}
+               , #{content}
+               , #{tag}
+               , 0
+               , #{reg_id}
+               , now()
+               , now()
+               )
+    </insert>
+
+    <update id="updateBoard" parameterType="com.nugabox.web.board.model.BoardVO">
+        UPDATE tbl_board SET
+            CATE_CD = #{cate_cd}
+                           , TITLE = #{title}
+                           , CONTENT = #{content}
+                           , TAG = #{tag}
+                           , EDIT_DT = now()
+        WHERE
+            BID = ${bid}
+    </update>
+
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM tbl_board
+        WHERE BID = #{bid}
+    </delete>
+
+    <update id="updateViewCnt" parameterType="com.nugabox.web.board.model.BoardVO">
+        UPDATE tbl_board SET
+            VIEW_CNT = VIEW_CNT + 1
+        WHERE
+            BID = #{bid}
+    </update>
 </mapper>
