@@ -13,13 +13,34 @@ public class BoardServiceImpl implements BoardService {
     @Inject
     private BoardDAO boardDAO;
 
+    // 게시물 목록 조회
     @Override
     public List<BoardVO> getBoardList() throws Exception {
         return boardDAO.getBoardList();
     }
 
+    // 게시글 추가
     @Override
     public void insertBoard(BoardVO boardVO) throws Exception {
         boardDAO.insertBoard(boardVO);
+    }
+
+    // 게시글 내용 가져오기
+    public BoardVO getBoardContent(int bid) throws Exception{
+        BoardVO boardVO = new BoardVO();
+        boardDAO.updateViewCnt(bid);
+        return boardDAO.getBoardContent(bid);
+    }
+
+    // 게시글 추가
+    @Override
+    public void updateBoard(BoardVO boardVO) throws Exception {
+        boardDAO.updateBoard(boardVO);
+    }
+
+    // 게시글 삭제
+    @Override
+    public void deleteBoard(int bid) throws Exception {
+        boardDAO.deleteBoard(bid);
     }
 }
