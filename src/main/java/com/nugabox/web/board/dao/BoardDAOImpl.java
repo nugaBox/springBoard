@@ -1,5 +1,6 @@
 package com.nugabox.web.board.dao;
 
+import com.nugabox.common.Pagination;
 import com.nugabox.web.board.model.BoardVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,14 @@ public class BoardDAOImpl implements BoardDAO {
     private SqlSession sqlSession;
 
     @Override
-    public List<BoardVO> getBoardList() throws Exception {
-        return sqlSession.selectList("com.nugabox.web.board.boardMapper.getBoardList");
+    public List<BoardVO> getBoardList(Pagination pagination) throws Exception {
+        return sqlSession.selectList("com.nugabox.web.board.boardMapper.getBoardList", pagination);
+    }
+
+    //총 게시글 개수 확인
+    @Override
+    public int getBoardListCnt() throws Exception {
+        return sqlSession.selectOne("com.nugabox.web.board.boardMapper.getBoardListCnt");
     }
 
     @Override

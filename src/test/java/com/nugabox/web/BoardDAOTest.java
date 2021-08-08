@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import com.nugabox.common.Pagination;
 import com.nugabox.web.board.dao.BoardDAO;
 import com.nugabox.web.board.model.BoardVO;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,7 +30,8 @@ public class BoardDAOTest {
 
     @Test @Ignore
     public void testGetBoardList() throws Exception {
-        List<BoardVO> boardList = boardDAO.getBoardList();
+        Pagination pagination = new Pagination();
+        List<BoardVO> boardList = boardDAO.getBoardList(pagination);
         logger.info("\n Board List \n ");
         if(boardList.size() > 0) {
             for(BoardVO list : boardList) {
@@ -62,18 +63,25 @@ public class BoardDAOTest {
     @Test
     public void testInsertBoard() throws Exception {
         BoardVO boardVO = new BoardVO();
+
         boardVO.setCate_cd("1");
-        boardVO.setTitle("첫번째 게시물 입니다.");
-        boardVO.setContent("첫번째 게시물입니다.");
+        //	boardVO.setTitle("첫번째 게시물 입니다.");
+        //	boardVO.setContent("첫번째 게시물입니다.");
         boardVO.setTag("1");
         boardVO.setReg_id("1");
 
-        int result = boardDAO.insertBoard(boardVO);
-        logger.info("\n Insert Board Result " +result);
-        if(result == 1) {
-            logger.info("\n 게시물 등록 성공 ");
-        } else {
-            logger.info("\n 게시물 등록 실패");
+        for( int i = 1; i < 1234 ; i++) {
+            boardVO.setTitle(i + " 번째 게시물 입니다.");
+            boardVO.setContent(i + " 번째 게시물 입니다.");
+            int result = boardDAO.insertBoard(boardVO);
+
+            logger.info("\n Insert Board Result " +result);
+
+            if(result == 1) {
+                logger.info("\n 게시물 등록 성공 ");
+            } else {
+                logger.info("\n 게시물 등록 실패");
+            }
         }
     }
 

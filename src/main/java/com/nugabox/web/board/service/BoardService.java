@@ -1,5 +1,6 @@
 package com.nugabox.web.board.service;
 
+import com.nugabox.common.Pagination;
 import com.nugabox.web.board.model.BoardVO;
 
 import java.util.List;
@@ -8,7 +9,10 @@ import java.util.Map;
 public interface BoardService {
 
     // 게시물 목록 조회
-    public List<BoardVO> getBoardList() throws Exception;
+    public List<BoardVO> getBoardList(Pagination pagination) throws Exception;
+
+    //총 게시글 개수 확인
+    public int getBoardListCnt() throws Exception;
 
     // 게시글 추가
     public void insertBoard(BoardVO boardVO) throws Exception;

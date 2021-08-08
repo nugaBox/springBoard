@@ -9,6 +9,14 @@
             BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
         FROM
             tbl_board
+        LIMIT #{startList}, #{listSize}
+    </select>
+
+    <select id="getBoardListCnt" resultType="int">
+        SELECT
+            count(*) as listCnt
+        FROM
+            tbl_board
     </select>
 
     <select id="getBoardContent" resultType="com.nugabox.web.board.model.BoardVO" parameterType="com.nugabox.web.board.model.BoardVO">
