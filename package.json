@@ -1,0 +1,27 @@
+{
+  "name": "springboard",
+  "version": "1.0.0",
+  "description": "### Env - JDK 1.8 - IntelliJ IDEA 2021 - Spring Framework 5.2.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nugaBox/springBoard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nugaBox/springBoard/issues"
+  },
+  "homepage": "https://github.com/nugaBox/springBoard#readme",
+  "devDependencies": {
+    "husky": "^7.0.1"
+  }
+  "husky": {
+    "hooks": {
+	"prepare-commit-msg": "/Users/seon-yul/Development/Workspaces/shellScript/add_issue_number_into_commit.sh $HUSKY_GIT_PARAMS"
+    }
+  }
+}
