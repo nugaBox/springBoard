@@ -3,6 +3,7 @@ package com.nugabox.web;
 import java.util.List;
 import javax.inject.Inject;
 
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.nugabox.common.Pagination;
+import com.nugabox.common.Search;
 import com.nugabox.web.board.dao.BoardDAO;
 import com.nugabox.web.board.model.BoardVO;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -27,11 +28,12 @@ public class BoardDAOTest {
 
     @Inject
     private BoardDAO boardDAO;
+    private Search search;
 
     @Test @Ignore
     public void testGetBoardList() throws Exception {
-        Pagination pagination = new Pagination();
-        List<BoardVO> boardList = boardDAO.getBoardList(pagination);
+        
+        List<BoardVO> boardList = boardDAO.getBoardList(search);
         logger.info("\n Board List \n ");
         if(boardList.size() > 0) {
             for(BoardVO list : boardList) {

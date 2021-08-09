@@ -1,6 +1,7 @@
 package com.nugabox.web.board.service;
 
 import com.nugabox.common.Pagination;
+import com.nugabox.common.Search;
 import com.nugabox.web.board.dao.BoardDAO;
 import com.nugabox.web.board.model.BoardVO;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,14 @@ public class BoardServiceImpl implements BoardService {
 
     // 게시물 목록 조회
     @Override
-    public List<BoardVO> getBoardList(Pagination pagination) throws Exception {
-        return boardDAO.getBoardList(pagination);
+    public List<BoardVO> getBoardList(Search search) throws Exception {
+        return boardDAO.getBoardList(search);
     }
 
     //총 게시글 개수 확인
     @Override
-    public int getBoardListCnt() throws Exception {
-        return boardDAO.getBoardListCnt();
+    public int getBoardListCnt(Search search) throws Exception {
+        return boardDAO.getBoardListCnt(search);
     }
 
     // 게시글 추가

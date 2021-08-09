@@ -136,7 +136,7 @@
     // 검색 버튼 클릭
     $(document).on('click', '#btnSearch', function(e){
         e.preventDefault();
-        var url = "${getBoardList}";    // <c:url>로 선언한 url을 사용
+        var url = "${getBoardList}";
         url = url + "?searchType=" + $('#searchType').val();
         url = url + "&keyword=" + $('#keyword').val();
         location.href = url;
