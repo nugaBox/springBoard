@@ -9,5 +9,4 @@
 
     <!-- properties -->
     <util:properties id="datasource" location="classpath:/properties/database-properties.xml"/>
-
 </beans>
