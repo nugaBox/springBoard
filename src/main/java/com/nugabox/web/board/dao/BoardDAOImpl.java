@@ -1,8 +1,8 @@
 package com.nugabox.web.board.dao;
 
-import com.nugabox.common.Pagination;
 import com.nugabox.common.Search;
 import com.nugabox.web.board.model.BoardVO;
+import com.nugabox.web.board.model.ReplyVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -48,5 +48,26 @@ public class BoardDAOImpl implements BoardDAO {
     @Override
     public int updateViewCnt(int bid) throws Exception {
         return sqlSession.update("com.nugabox.web.board.boardMapper.updateViewCnt", bid);
+    }
+
+    // 댓글 리스트
+    @Override
+    public List<ReplyVO> getReplyList(int bid) throws Exception {
+        return sqlSession.selectList("com.nugabox.web.board.replyMapper.getReplyList", bid);
+    }
+
+    @Override
+    public int saveReply(ReplyVO replyVO) throws Exception {
+        return sqlSession.insert("com.nugabox.web.board.replyMapper.saveReply", replyVO);
+    }
+
+    @Override
+    public int updateReply(ReplyVO replyVO) throws Exception {
+        return sqlSession.update("com.nugabox.web.board.replyMapper.updateReply", replyVO);
+    }
+
+    @Override
+    public int deleteReply(int rid) throws Exception {
+        return sqlSession.delete("com.nugabox.web.board.replyMapper.deleteReply", rid);
     }
 }

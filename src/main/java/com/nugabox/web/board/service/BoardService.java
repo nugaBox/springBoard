@@ -1,11 +1,10 @@
 package com.nugabox.web.board.service;
 
-import com.nugabox.common.Pagination;
 import com.nugabox.common.Search;
 import com.nugabox.web.board.model.BoardVO;
+import com.nugabox.web.board.model.ReplyVO;
 
 import java.util.List;
-import java.util.Map;
 
 public interface BoardService {
 
@@ -26,4 +25,10 @@ public interface BoardService {
 
     // 게시글 삭제
     public void deleteBoard(int bid) throws Exception;
+
+    // 댓글 리스트
+    public List<ReplyVO> getReplyList(int bid) throws Exception;
+    public int saveReply(ReplyVO replyVO) throws Exception;
+    public int updateReply(ReplyVO replyVO) throws Exception;
+    public int deleteReply(int rid) throws Exception;
 }
