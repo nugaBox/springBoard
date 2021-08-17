@@ -3,6 +3,7 @@ package com.nugabox.web.board.controller;
 import com.nugabox.common.Pagination;
 import com.nugabox.common.Search;
 import com.nugabox.web.board.model.BoardVO;
+import com.nugabox.web.board.model.ReplyVO;
 import com.nugabox.web.board.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,6 +62,7 @@ public class BoardController {
     @RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
     public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception {
         model.addAttribute("boardContent", boardService.getBoardContent(bid));
+        model.addAttribute("replyVO", new ReplyVO());
         return "board/boardContent";
     }
 
